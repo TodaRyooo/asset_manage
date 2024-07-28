@@ -1,0 +1,147 @@
+@import '../global.module.scss';
+
+.block {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+
+  &.open {
+    padding: 0px 12px;
+  }
+  &.closed {
+    padding: 0px;
+  }
+}
+
+.border {
+  position: relative;
+  margin: 4vh 0px 4vh;
+  border-right: 1px solid $bg-400-dark;
+  height: 92vh;
+}
+
+.base {
+  position: absolute;
+  cursor: pointer;
+  padding: 4px;
+  background-color: $bg-400-dark;
+  margin: 70px 0px 0px -14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.hamburger {
+  @extend .base;
+  &.open {
+    transform: rotateZ(180deg);
+  }
+  &.closed {
+    transform: rotateZ(-180deg);
+  }
+}
+
+.innerBlk {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.3s;
+
+  &.open {
+    width: 240px;
+    padding: 0px 20px;
+  }
+
+  &.closed {
+    width: 80px;
+    padding: 0px 20px;
+  }
+}
+
+.svgBox {
+  transition: 0.3s;
+  &.open {
+    margin: 40px 40px 100px;
+  }
+  &.closed {
+    margin: 40px 0px 100px;
+  }
+}
+
+.listBox {
+  display: flex;
+  color: $text-100-dark;
+  cursor: pointer;
+  font-size: 26px;
+  opacity: 1;
+  transition: 0.3s;
+  width: 100%;
+  &:not(:last-child) {
+    margin-bottom: 120px;
+  }
+  &:hover {
+    font-size: 28px;
+    transition: 0.3s;
+  }
+}
+
+.labelOpen {
+  overflow: hidden;
+  position: absolute;
+  opacity: 0;
+  animation: 0.3s fadeIn normal forwards;
+  margin-left: 50px;
+  &:not(:last-child) {
+    margin-bottom: 80px;
+  }
+}
+.labelClosed {
+  overflow: hidden;
+  position: absolute;
+  opacity: 0;
+  transform: translateX(-200%);
+  transition: 0.3s;
+  margin-left: 50px;
+  &:not(:last-child) {
+    margin-bottom: 80px;
+  }
+}
+
+.component {
+  position: absolute;
+  opacity: 1;
+  transition: 0.3s;
+  width: 40px;
+  height: 40px;
+  &:not(:last-child) {
+    margin-bottom: 80px;
+  }
+  &.open {
+    transform: rotateZ(360deg);
+    transition: 0.3s;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+// @keyframes fadeOut {
+//   from {
+//     opacity: 1;
+//     transform: translateX(0%);
+//   }
+//   to {
+//     opacity: 0;
+//     transform: translateX(-100%);
+//   }
+// }

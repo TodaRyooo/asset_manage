@@ -1,0 +1,67 @@
+// <style>
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
+// </style>
+
+$primary-100-dark: #00bfff;
+$primary-200-dark: #00a2e0;
+$primary-300-dark: #00619a;
+$accent-100-dark: #ff4500;
+$accent-200-dark: #ffe49a;
+$text-100-dark: #ffffff;
+$text-200-dark: #e0e0e0;
+$bg-100-dark: #1a1a1a;
+$bg-200-dark: #292929;
+$bg-300-dark: #404040;
+$bg-400-dark: #606060;
+
+$pie-010: #06cfce;
+$pie-020: #ff69b4;
+$pie-030: #00ff00;
+$pie-040: #8a2be2;
+$pie-050: #ff4500;
+$pie-060: #ffff00;
+$pie-070: #c0c0c0;
+$pie-080: #008b8b;
+$pie-090: #ff0000;
+$pie-100: #39ff14;
+
+$primary-100: #e0f7ff;
+$primary-200: #b3e5ff;
+$primary-300: #80d2ff;
+$accent-100: #ff7f50;
+$accent-200: #ffebc2;
+$text-100: #000000;
+$text-200: #a0a0a0;
+$bg-100: #f0f0f0;
+$bg-200: #e0e0e0;
+$bg-300: #d0d0d0;
+$bg-400: #c0c0c0;
+
+// $hoge-010:#2E96FF;
+// $hoge-020:#9001CB;
+
+:export {
+  PrimaryDark100: $primary-100-dark;
+  PrimaryDark200: $primary-200-dark;
+  PrimaryDark300: $primary-300-dark;
+  AccentDark100: $accent-100-dark;
+  AccentDark200: $accent-200-dark;
+  TextDark100: $text-100-dark;
+  TextDark200: $text-200-dark;
+  BgDark100: $bg-100-dark;
+  BgDark200: $bg-200-dark;
+  BgDark300: $bg-300-dark;
+  BgDark400: $bg-400-dark;
+
+  Primary100: $primary-100;
+  Primary200: $primary-200;
+  Primary300: $primary-300;
+  Accent100: $accent-100;
+  Accent200: $accent-200;
+  Text100: $text-100;
+  Text200: $text-200;
+  Bg100: $bg-100;
+  Bg200: $bg-200;
+  Bg300: $bg-300;
+  Bg400: $bg-400;
+}

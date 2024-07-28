@@ -1,0 +1,59 @@
+@import '../global.module.scss';
+
+.tmp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 80px;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  background: $bg-100-dark;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 26px;
+  font-weight: 200;
+  z-index: 0;
+  user-select: none;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    background: $bg-200-dark;
+    border-radius: 8px;
+    transition: 0.25s;
+  }
+
+  &:hover::before {
+    // background: $bg-200-dark;
+    width: 100%;
+  }
+}
+
+// .hovItem {
+// 	position:relative;
+// 	z-index:0;
+// 	overflow:hidden;
+// 	background-color: yellow;
+// 	&::before {
+// 		content:'';
+// 		display: block;
+// 		position:absolute;
+// 		top:0;
+// 		left:0;
+// 		z-index:-1;
+// 		width:0%;
+// 		height: 100%;
+// 		background-color: pink;
+// 		transition: .5s;
+// 	}
+// 	&:hover::before {
+// 		width:100%;
+// 	}
+// }

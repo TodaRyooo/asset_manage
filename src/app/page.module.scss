@@ -1,0 +1,54 @@
+@import '../global.module.scss';
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5vh;
+  // height: 100%;
+  // width: 40%;
+}
+
+.title {
+  font-size: 24px;
+  color: $text-200-dark;
+}
+
+.amount {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 64px;
+  font-weight: 200;
+}
+
+.chartBlk {
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-200-dark;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 25vw;
+  height: fit-content;
+  border-radius: 16px;
+  animation: 1s anime forwards;
+}
+
+.fadeFirst {
+  animation: 0.5s anime forwards;
+}
+
+.fadeSecond {
+  opacity: 0;
+  animation: 0.5s 0.3s anime forwards;
+}
+
+@keyframes anime {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

@@ -1,95 +1,98 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import { CategoryStore, categoryValueType } from '@/libs/CategoryStore'
+import { PickStore } from '@/libs/PickStore'
+import { PageStore } from '@/libs/pageStore'
+import AllocationPage from '@/prisma/allocation'
+import ExpensesPage from '@/prisma/expenses'
+import SettingsPage from '@/prisma/settings'
 
 export default function Home() {
+  const { income, categoryValue, remain } = CategoryStore()
+  const { pickValue } = PickStore()
+  const { pageValue } = PageStore()
+
+  const categoryTmpItems = [
+    { key: 'deposit', text: '貯金' },
+    { key: 'food', text: '食費' },
+    { key: 'housing', text: '家賃' },
+    { key: 'utilities', text: '光熱費' },
+    { key: 'water', text: '水道費' },
+    { key: 'daily', text: '日用品' },
+    { key: 'entertainment', text: '娯楽費' },
+    { key: 'other', text: 'その他' },
+  ]
+
+  const fuga: { x: string; y: number }[] = []
+
+  categoryTmpItems.map((item) => {
+    if (pickValue[item.key as keyof categoryValueType]) {
+      const piyo = { x: item.text, y: categoryValue[item.key as keyof categoryValueType] }
+      fuga.push(piyo)
+    }
+  })
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      {pageValue.allocation && <AllocationPage />}
+      {pageValue.expenses && <ExpensesPage />}
+      {pageValue.settings && <SettingsPage />}
+    </>
+  )
+}
+
+{
+  /* <div style={{ display: 'flex', width: '100%', gap: '4vw' }}>
+        <div className={styles.block}>
+          <div className={`${styles.chartBlk} ${styles.fadeFirst}`}>
+            <div className={`${styles.title}`} style={{ maxWidth: '484px' }}>
+              総貯金額
+            </div>
+            <div className={`${styles.amount}`}>{income}</div>
+          </div>
+
+          <div className={`${styles.chartBlk} ${styles.fadeSecond}`}>
+            <div className={styles.title}>{SETTINGS.TITLE}</div>
+            {remain === 0 ? (
+              <VictoryPie
+                data={fuga}
+                innerRadius={45}
+                labels={(pie) => `${pie.datum.x} ${pie.datum.y} %`}
+                labelRadius={100}
+                colorScale={colors}
+                cornerRadius={8}
+                padAngle={({ datum }) => datum.y * 0.1}
+                style={{
+                  labels: { fontFamily: 'Noto Sans Mono', fontSize: 12, fill: '#e0e0e0' },
+                  parent: { maxWidth: '484px', width: '100%', height: '100%' },
+                }}
+                labelIndicator={<LineSegment style={{ stroke: '#e0e0e0', strokeDasharray: 5 }} />}
+              />
+            ) : (
+              <div
+                style={{
+                  maxWidth: '484px',
+                  width: '100%',
+                  height: '100%',
+                  fontSize: '24px',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                Cannot be displayed because the sum of all factors exceeds 100%.
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+        <div className={styles.block}>
+          <div className={`${styles.chartBlk} ${styles.fadeFirst}`}>
+            <div className={`${styles.title}`} style={{ width: 'auto' }}>
+              今月の貯金額
+            </div>
+            <div className={`${styles.amount}`}>
+              {categoryValue.deposit !== 0 && (income * categoryValue.deposit) / 100}
+            </div>
+          </div>
+        </div>
+      </div> */
 }

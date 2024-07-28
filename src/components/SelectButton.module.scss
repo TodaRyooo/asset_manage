@@ -1,0 +1,24 @@
+@import '../global.module.scss';
+
+.block {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  margin-right: 8px;
+
+  &.true {
+    background-color: $primary-200-dark;
+    transition: 0.3s;
+  }
+  &.false {
+    background-color: transparent;
+    transition: 0.3s;
+  }
+}

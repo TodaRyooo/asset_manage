@@ -1,0 +1,8 @@
+export { default as Allocation } from './Allocation'
+export { default as Close } from './Close'
+export { default as Dashboard } from './Dashboard'
+export { default as Expenses } from './Expenses'
+export { default as Hamburger } from './Hamburger'
+export { default as History } from './History'
+export { default as MainLogo } from './MainLogo'
+export { default as Settings } from './Settings'
